@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анимированый текст</title>
+</head>
+
+<body>
+
+    <button id="add">Добавить текст</button>
+    <div id="block"></div>
+
+    <script>
+        var words = ['яблоко', 'груша', 'персик', 'слива'],
+            start = document.getElementById('add');
+
+        function add_text(id) {
+            let elem = document.getElementById(id),
+                pos = 0,
+                text = words[Math.floor(Math.random() * words.length)];
+
+            function add_letter() {
+                if (pos <= text.length) elem.innerHTML = text.substr(0, pos);
+                else {
+                    pos = 0;
+                    clearInterval(s);
+                }
+                pos++;
+                setTimeout(add_letter, 500);
+            }
+            add_letter();
+        }
+
+        start.addEventListener('click', function () {
+            add_text('block');
+        });
+    </script>
+</body>
+
+</html>

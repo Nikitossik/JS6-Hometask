@@ -1,0 +1,159 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+.banner{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+button i{
+    pointer-events: none;
+}
+
+.slide_show{
+    max-width: 1000px;
+    position: relative;
+}
+
+.slide{
+    width: 100%;
+    height: 500px;
+    display: none;
+}
+
+.slide.active{
+    display: block;
+}
+
+.slide img{
+    width: 100%;
+    height:100%;
+    object-fit: cover;
+}
+
+.arrow{
+    position: absolute;
+    top: 50%;
+    margin-top: -50px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 28px;
+    background: rgba(0,0,0,0.5);
+    color:#fff;
+    transition: 0.5s ease-in-out;
+}
+
+.arrow:hover{
+    background: #fff;
+    color:#000;
+}
+
+#next{
+    right: 25px;
+}
+
+#next:hover{
+    transform: translateX(10px);
+}
+
+#prev{
+    left: 25px;
+}
+
+#prev:hover{
+    transform: translateX(-10px);
+}
+
+.mini_block{
+    margin-top: 10px;
+    position: relative;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+}
+.mini_block .mini{
+    display: inline-block;
+    width: calc(100% / 6 - 20px);
+    height: 100%;
+    opacity: 0.6;
+    transition: 0.3s;
+    user-select: none;
+}
+
+.mini.active, .mini:hover{
+    opacity: 1;
+}
+
+.mini_block .mini img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.effects_block{
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.effects_block button{
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    margin-left: 20px;
+    background: #fff;
+    transition: 0.5s;
+}
+
+.effects_block button:hover{
+    background: #d90d39;
+}
+
+.effects_block button i{
+    font-size: 36px;
+    color:#d90d39;
+    transition: 0.5s;
+}
+
+.effects_block button:hover i{
+    color:#fff
+}
+
+.fadeIn{
+    animation: fadeIn 0.7s;
+}
+
+.backInDown{
+    animation: backInDown 1s;
+}
+
+.backInUp{
+    animation: backInUp 1s;
+}
+
+.jackInTheBox{
+    animation: jackInTheBox 1s;
+}
+
+.zoomInDown{
+    animation: zoomInDown 1s;
+}
+
+.bounceIn{
+    animation: bounceIn 1s;
+}

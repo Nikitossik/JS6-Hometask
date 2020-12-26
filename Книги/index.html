@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Книги</title>
+  <style>
+    p,
+    ul {
+      height: 0px;
+      margin: 0;
+      overflow: auto;
+      transition: all .3s ease .15s;
+    }
+
+    .title {
+      font-weight: bold;
+      color: blue;
+    }
+
+    .title:after {
+      content: '+';
+      padding-left: 5px;
+      font-size: 20px;
+      color: blue;
+      cursor: pointer;
+    }
+
+    ul.open {
+      height: 400px;
+    }
+
+    p.open {
+      height: 50px;
+    }
+
+    .minus.title:after {
+      content: '-';
+    }
+  </style>
+</head>
+
+<body>
+  <div id="books" class="menu">
+    <div class="title">Books</div>
+    <ul>
+      <li>
+        <div class="title">Book 1</div>
+        <p>Lorem, ipsum dolor.</p>
+      </li>
+      <li>
+        <div class="title">Book 2</div>
+        <p>Lorem, ipsum dolor.</p>
+      </li>
+      <li>
+        <div class="title">Book 3</div>
+        <p>Lorem, ipsum dolor.</p>
+      </li>
+      <li>
+        <div class="title">Book 4</div>
+        <p>Lorem, ipsum dolor.</p>
+      </li>
+      <li>
+        <div class="title">Book 5</div>
+        <p>Lorem, ipsum dolor.</p>
+      </li>
+    </ul>
+  </div>
+  </div>
+  <script>
+    let titles = document.getElementsByClassName("title");
+    for (let i = 0; i < titles.length; i++) {
+      titles[i].onclick = showBook;
+    }
+
+    function showBook(e) {
+      let title = e.target;
+      let toShow = title.nextElementSibling;
+      toShow.classList.toggle('open');
+      title.classList.toggle('minus');
+    }
+  </script>
+</body>
+
+</html>

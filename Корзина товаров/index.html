@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Корзина товаров</title>
+</head>
+<body>
+    <div id="basket">
+        Корзина товаров
+        <div id="cart" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+        <div id="sum">Сумма: 0</div>
+        <input type="button" onclick="arrange()" value="Оформить заказ"/>
+     </div>
+     <div class="product">
+        <img id="fl1" src="http://js.web-online.net.ua/fl1.jpg" draggable="true" ondragstart="drag(event)" data-text="Ирис 1" data-price="30" />
+        <div><a href="#">Flower 1</a></div>
+     </div>
+     <div class="product">
+        <img id="fl2" src="http://js.web-online.net.ua/fl2.jpg" draggable="true" ondragstart="drag(event)" data-text="Ирис 2" data-price="20" />
+        <div><a href="#">Flower 2</a></div>
+     </div>
+     <p id="order" class="hidden"></p>
+    <script src="script.js"></script>
+</body>
+</html>
