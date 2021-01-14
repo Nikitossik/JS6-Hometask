@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="OpenLayers-2.13.1/OpenLayers.js"></script>
+  <title>Document</title>
+
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      border:0;
+      box-sizing: border-box;
+    }
+
+    input[type='text'], button{
+      margin:20px 30px;
+      padding: 5px;
+      font-size: 20px;
+      border:2px solid #32657D;
+      background: #EAF8FF;
+    }
+
+    button{
+      font-size: 16px;
+    }
+
+    #dist, #status{
+      margin:10px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <input type="text" name="" id="lat" />
+  <input type="text" name="" id="lon" />
+  <button onclick="geoFindMe()">Узнать расстояние и показать на карте</button>
+  <div id="dist"></div>
+  <p id = "status"></p>
+  <div id="demoMap" style="height: 650px"></div>
+
+  <script>
+    let distance = document.getElementById("dist"),
+        status = document.getElementById('status'),
+        lat = document.getElementById("lat"),
+        lon = document.getElementById("lon");
+
+
+    let zoom = 0; // зум
+
+    let fromProjection = new OpenLayers.Projection("EPSG:4326"); // Преобразование из WGS 1984
+    let toProjection = new OpenLayers.Projection("EPSG:900913"); // к сферической проекции Меркатора
+
+    let map = new OpenLayers.Map("demoMap");
+    let mapnik = new OpenLayers.Layer.OSM();
+    map.addLayer(mapnik);
+    map.setCenter([0,0], zoom);
+
+    function geoFindMe() {
+
+      function success(position) {
+        let lat1 = position.coords.latitude,
+            lon1 = position.coords.longitude,
+            lat2 = lat.value,
+            lon2 = lon.value;
+
+        let dist = getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2).toFixed(0);
+
+        status.innerHTML = "";
+
+        distance.innerHTML = `Расстояние между (${lat1} : ${lon1}) и (${lat2} : ${lon2})
+         - ${dist} км`;
+
+        // расчет позиционирования
+        let position1 = new OpenLayers.LonLat(lon1, lat1).transform(
+          fromProjection,
+          toProjection
+        ),
+        position2 = new OpenLayers.LonLat(lon2, lat2).transform(
+          fromProjection,
+          toProjection
+        );
+
+        // добавляем маркеры
+        let markers = new OpenLayers.Layer.Markers("Markers");
+        markers.addMarker(new OpenLayers.Marker(position1));
+        markers.addMarker(new OpenLayers.Marker(position2));
+        map.addLayer(markers);
+        map.setCenter(position1, zoom);
+      }
+
+      function error() {
+        status.innerHTML = "Невозможно получить данные геолокации.";
+      }
+
+      if (!navigator.geolocation) {
+        status.innerHTML = "Геолокация не поддерживается вашим браузером.";
+      } else {
+        status.innerHTML = "Идет поиск…";
+        navigator.geolocation.getCurrentPosition(success, error);
+      }
+    }
+
+    function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+      let R = 6371; // Radius of the earth in km
+      let dLat = deg2rad(lat2 - lat1); // deg2rad below
+      let dLon = deg2rad(lon2 - lon1);
+      let a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(deg2rad(lat1)) *
+        Math.cos(deg2rad(lat2)) *
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2);
+      let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      let d = R * c; // Distance in km
+      return d;
+    }
+
+    function deg2rad(deg) {
+      return deg * (Math.PI / 180);
+    }
+  </script>
+</body>
+
+</html>

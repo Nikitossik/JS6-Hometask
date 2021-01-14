@@ -1,0 +1,133 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+#wrap {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  display: inline-block;
+  float: left;
+  width: 80px;
+  height: 120px;
+  background:url(images/reverse.jpg);
+  margin: 5px;
+  box-sizing: border-box;
+}
+
+#real_cards,
+#played_cards {
+  padding:10px;
+  width:1000px;
+  min-height: 240px;
+  background-color: green;
+  margin-top:10px;
+}
+
+.rotate {
+  transition: all 2s ease;
+  opacity: 0;
+  transform: translate(500px, 800px) rotate(360deg);
+}
+
+#win {
+  display: none;
+  position: absolute;
+  width: 40%;
+  height: 40%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: gold;
+  color: red;
+  text-align: center;
+  font-size: 60px;
+  z-index: 9999;
+  opacity: 0;
+  box-sizing: border-box;
+  padding-top: 10%;
+  border: 2px solid red;
+  transition: all 1s;
+}
+
+#win.active{
+  display: block;
+  opacity: 1;
+  animation: zoomInUp 1s;
+}
+
+#played_cards .card#rc_A{
+  background: url(images/cards.png);
+}
+
+#played_cards .card#rc_2{
+  background: url(images/cards.png);
+  background-position-x:-80px;
+}
+
+#played_cards .card#rc_3{
+  background: url(images/cards.png);
+  background-position-x:-160px;
+}
+
+#played_cards .card#rc_4{
+  background: url(images/cards.png);
+  background-position-x:-240px;
+}
+
+#played_cards .card#rc_5{
+  background: url(images/cards.png);
+  background-position-x:-320px;
+}
+
+#played_cards .card#rc_6{
+  background: url(images/cards.png);
+  background-position-x:-400px;
+}
+
+#played_cards .card#rc_7{
+  background: url(images/cards.png);
+  background-position-x:-480px;
+}
+
+#played_cards .card#rc_8{
+  background: url(images/cards.png);
+  background-position-x:-560px;
+}
+
+#played_cards .card#rc_9{
+  background: url(images/cards.png);
+  background-position-x:-640px;
+}
+
+#played_cards .card#rc_10{
+  background: url(images/cards.png);
+  background-position-x:-720px;
+}
+
+#played_cards .card#rc_J{
+  background: url(images/cards.png);
+  background-position-x:-800px;
+}
+
+#played_cards .card#rc_Q{
+  background: url(images/cards.png);
+  background-position-x:-880px;
+}
+
+#played_cards .card#rc_K{
+  background: url(images/cards.png);
+  background-position-x:-960px;
+}
+
+
